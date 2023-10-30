@@ -9,9 +9,6 @@ import Layout from './components/lay/Layout';
 import { Routes, Route, Navigate } from "react-router-dom";
 
 
-
-
-
 const App = () => {
   return (
     <Routes>
