@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import PostsList from './components/posts/PostsList';
+import AddPost from './components/posts/AddPost';
+import SinglePostPage from './components/posts/SinglePostPage';
+import EditPost from './components/posts/EditPost'; 
+import UserPage from './components/users/UserPage';
+import UsersList from './components/users/UsersList';
+import Layout from './components/lay/Layout';
+import { Routes, Route, Navigate } from "react-router-dom";
+
+
+
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+      <Route  path='/' element={ <Layout /> } >
+
+        <Route index  element={ <PostsList /> } />
+
+        <Route path='post' >
+          <Route index  element={ <AddPost /> } />
+          <Route path=':postId'  element={ <SinglePostPage /> } />
+          <Route path='edit/:postId' element={ <EditPost /> } />
+        </Route>
+
+        <Route path='user' >
+          <Route index  element={ <UsersList /> }  />
+          <Route path=':userId'  element={ <UserPage /> } />
+        </Route>
+
+        <Route path='*' element={ <Navigate to='/' replace /> } />
+
+      </Route>
+    </Routes>
+  )
 }
 
-export default App;
+export default App
